@@ -3,10 +3,10 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import Lasso
 from sklearn.neural_network import MLPRegressor
-from sklearn.linear_model import SGDRegressor
+from sklearn.linear_model import TheilSenRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import AdaBoostRegressor
@@ -42,14 +42,14 @@ train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=test_size, r
 
 saved_model = joblib.load('model_data/cur_model.pkl')
 saved_prediction = saved_model.predict(test_X)
-saved_mae = mean_absolute_error(test_y, saved_prediction)
-print('mae of saved model = ', saved_mae)
+saved_mse = mean_squared_error(test_y, saved_prediction)
+print('mae of saved model = ', saved_mse)
 
-model = Lasso(random_state=1)
+model = TheilSenRegressor(random_state=1)
 model.fit(train_X, train_y)
 test_prediction = model.predict(test_X)
-mae = mean_absolute_error(test_y, test_prediction)
-print('mae = ', mae)
+mse = mean_squared_error(test_y, test_prediction)
+print('mae = ', mse)
 
 if input('Would you like to save this model? [y/n]').lower() == 'y':
     for predictor in predictors:
