@@ -45,7 +45,7 @@ saved_prediction = saved_model.predict(test_X)
 saved_mse = mean_squared_error(test_y, saved_prediction)
 print('mae of saved model = ', saved_mse)
 
-model = TheilSenRegressor(random_state=1)
+model = RandomForestRegressor(random_state=1)
 model.fit(train_X, train_y)
 test_prediction = model.predict(test_X)
 mse = mean_squared_error(test_y, test_prediction)
