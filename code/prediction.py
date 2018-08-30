@@ -35,6 +35,9 @@ user_predicted_weights = model.predict(data)
 #       % (user_predicted_weight, util.kg_to_lb(user_predicted_weight)))
 
 plt.plot(age_range, [util.kg_to_lb(user_predicted_weights[i]) for i in range(len(user_predicted_weights))])
+plt.xlabel('Age')
+plt.ylabel('Predicted Weight (lbs)')
+plt.title('Graph of Current Model\'s Predictions')
 plt.savefig('images/saved_prediction_graph.png')
 
 plt.show()
