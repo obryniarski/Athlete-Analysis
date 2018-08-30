@@ -3,6 +3,7 @@ import util
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 model = joblib.load('model_data/cur_model.pkl')
 Age_scaler = joblib.load('model_data/Age_scaler.pkl')
@@ -32,8 +33,8 @@ user_predicted_weights = model.predict(data)
 
 # print('The predicted ideal athlete at your height and weight weighs %f kgs, %f lbs'
 #       % (user_predicted_weight, util.kg_to_lb(user_predicted_weight)))
-print(user_predicted_weights)
 
 plt.plot(age_range, [util.kg_to_lb(user_predicted_weights[i]) for i in range(len(user_predicted_weights))])
+plt.savefig('images/saved_prediction_graph.png')
 
 plt.show()
